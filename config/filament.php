@@ -6,6 +6,7 @@ use Filament\Http\Middleware\MirrorConfigToSubpackages;
 use Filament\Pages;
 use Filament\Resources;
 use Filament\Widgets;
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -76,7 +77,7 @@ return [
     'auth' => [
         'guard' => env('FILAMENT_AUTH_GUARD', 'web'),
         'pages' => [
-            'login' => \Filament\Http\Livewire\Auth\Login::class,
+            'login' => \JeffGreco13\FilamentBreezy\Http\Livewire\Auth\Login::class,
         ],
     ],
 
@@ -129,7 +130,7 @@ return [
         'path' => app_path('Filament/Widgets'),
         'register' => [
             Widgets\AccountWidget::class,
-            Widgets\FilamentInfoWidget::class,
+//            Widgets\FilamentInfoWidget::class,
         ],
     ],
 
@@ -167,9 +168,9 @@ return [
             ],
         ],
         'footer' => [
-            'should_show_logo' => true,
+            'should_show_logo' => false,
         ],
-        'max_content_width' => null,
+        'max_content_width' => 'full',
         'tables' => [
             'actions' => [
                 'type' => \Filament\Tables\Actions\LinkAction::class,
@@ -214,6 +215,7 @@ return [
     'middleware' => [
         'auth' => [
             Authenticate::class,
+            EnsureEmailIsVerified::class
         ],
         'base' => [
             EncryptCookies::class,
