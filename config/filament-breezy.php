@@ -37,5 +37,15 @@ return [
     |--------------------------------------------------------------------------
     | Where to redirect the user after registration.
     */
-    "registration_redirect_url" => config("filament.home_url", "/"),
+    "registration_redirect_url" => config("filament.path", "/"),
+    /*
+    |--------------------------------------------------------------------------
+    | Enable sanctum api token management.
+    */
+    "enable_sanctum" => true,
+    /*
+    |--------------------------------------------------------------------------
+    | Sanctum permissions
+    */
+    "sanctum_permissions" => ["create", "read", "update", "delete"],
 ];
